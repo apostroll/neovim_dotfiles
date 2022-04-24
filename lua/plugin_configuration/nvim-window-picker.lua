@@ -9,7 +9,7 @@ window_picker.setup({
 	selection_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 	filter_rules = {
 		bo = {
-			filetype = { 'neo-tree', "neo-tree-popup", "notify", "quickfix" },
+			filetype = { 'neo-tree', 'neo-tree-popup', 'notify', 'quickfix' },
 			buftype = { 'terminal' },
 		},
 	},
