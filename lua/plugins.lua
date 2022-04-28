@@ -48,12 +48,6 @@ return packer.startup({ function(use)
 	use 'numToStr/Comment.nvim' -- Easily comment stuff
 
 	use 'preservim/tagbar' -- Displays a class outline (needs exuberant ctags)
-	-- use {
-	-- 	'kyazdani42/nvim-tree.lua', -- A file explorer for your working tree
-	-- 	requires = {
-	-- 		'kyazdani42/nvim-web-devicons', -- file icons
-	-- 	}
-	-- }
 
 	use {
 		'nvim-neo-tree/neo-tree.nvim',
