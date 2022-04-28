@@ -24,7 +24,7 @@ configs.setup {
 		'haskell',
 		'latex',
 		'bash',
-		'vim',
+		'hcl',
 	},
 	autopairs = {
 		enable = true,
