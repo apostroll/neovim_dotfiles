@@ -39,7 +39,7 @@ packer.init {
 }
 
 -- Install your plugins here
-return packer.startup({function(use)
+return packer.startup({ function(use)
 	use 'wbthomason/packer.nvim' -- Have packer manage itself
 	use 'simnalamburt/vim-mundo' -- Provide visualization of vim's undo graph
 	use 'nvim-lua/popup.nvim' -- An implementation of the Popup API from vim in Neovim
@@ -145,8 +145,7 @@ return packer.startup({function(use)
 		require('packer').sync()
 	end
 end,
-	config = {
-		compile_path = require('packer.util').join_paths(vim.fn.stdpath('config'), '.plugin', 'packer_compiled.lua'),
-	}
+config = {
+	compile_path = require('packer.util').join_paths(vim.fn.stdpath('config'), '.plugin', 'packer_compiled.lua'),
+}
 })
-
