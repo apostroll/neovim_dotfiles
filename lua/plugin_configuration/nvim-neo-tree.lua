@@ -125,8 +125,8 @@ neo_tree.setup({
 				['<bs>'] = 'navigate_up',
 				['.'] = 'set_root',
 				['H'] = 'toggle_hidden',
-				['/'] = 'fuzzy_finder',
-				['f'] = 'filter_on_submit',
+				['/'] = 'noop',
+				['f'] = 'fuzzy_finder',
 				['<c-/>'] = 'clear_filter',
 			}
 		}
