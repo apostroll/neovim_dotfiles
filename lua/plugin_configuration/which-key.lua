@@ -71,7 +71,14 @@ wk.register({
 	},
 	['<leader>'] = {
 		a = { [[<cmd>lua require('telescope.builtin').live_grep{}<cr>]], 'Grep Files' },
-		gs = { ':G<CR>', 'Git status' },
+		g = {
+			name = 'Git Fugitive',
+			s = {':G<CR>', 'Git status'},
+			d = {':G diff<CR>', 'Git diff'},
+			f = {':G fetch<CR>', 'Git fetch'},
+			b = {':G blame<CR>', 'Git blame'},
+			p = {':G push<CR>', 'Git push'},
+		},
 		t = { ':tabnew<CR>', 'New tab' },
 		T = { ':tabclose<CR>', 'Close tab' },
 		l = { ':set list!<CR>', 'Toggle invisible characters' },
