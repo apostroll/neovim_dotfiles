@@ -28,7 +28,7 @@ wk.setup({
 		['<space>'] = "SPC",
 		['<leader>'] = ',',
 		['<localleader>'] = 'SPC',
-  },
+	},
 
 })
 
@@ -73,19 +73,19 @@ wk.register({
 		a = { [[<cmd>lua require('telescope.builtin').live_grep{}<cr>]], 'Grep Files' },
 		g = {
 			name = 'Git Fugitive',
-			s = {':G<CR>', 'Git status'},
-			d = {':G diff<CR>', 'Git diff'},
-			f = {':G fetch<CR>', 'Git fetch'},
-			b = {':G blame<CR>', 'Git blame'},
-			p = {':G push<CR>', 'Git push'},
+			s = { ':G<CR>', 'Git status' },
+			d = { ':G diff<CR>', 'Git diff' },
+			f = { ':G fetch<CR>', 'Git fetch' },
+			b = { ':G blame<CR>', 'Git blame' },
+			p = { ':G push<CR>', 'Git push' },
 		},
 		t = { ':tabnew<CR>', 'New tab' },
+		[','] = { ':tabnext<CR>', 'Next tab' },
+		['.'] = { ':tabprevious<CR>', 'Previous tab' },
 		T = { ':tabclose<CR>', 'Close tab' },
 		l = { ':set list!<CR>', 'Toggle invisible characters' },
 		w = { [[:%s/\s\+$//<cr>:let @/=''<CR>]], 'Delete trailing spaces' },
 	},
-	['<leader>,'] = { ':tabnext<CR>', 'Next tab' },
-	['<leader>.'] = { ':tabprevious<CR>', 'Previous tab' },
 	['<localleader>'] = {
 		['<localleader>'] = {
 			':WhichKey<CR>', 'Open WhichKey'
