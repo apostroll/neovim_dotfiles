@@ -33,6 +33,7 @@ local options = {
 	mousehide = true,                        -- hide mouse pointer while typing
 	report = 0,                              -- always display report of changed lines
 	hidden = true,                           -- allow closing a buffer with unsaved changes
+	laststatus = 3,                          -- Display a global status line for all open buffers
 	pumblend = 20,
 	spell = false,
 	spelllang = 'el,en',
