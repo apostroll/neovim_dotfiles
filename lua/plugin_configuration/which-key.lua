@@ -16,14 +16,20 @@ wk.setup({
 		},
 		presets = {
 			operators = true,
-			motions = true,
+			motions = false,
 			text_objects = true,
 			windows = true,
 			nav = true,
 			z = true,
 			g = true,
 		}
-	}
+	},
+	key_labels = {
+		['<space>'] = "SPC",
+		['<leader>'] = ',',
+		['<localleader>'] = 'SPC',
+  },
+
 })
 
 local opts = {
