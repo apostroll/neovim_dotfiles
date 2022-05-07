@@ -33,9 +33,6 @@ end
 local function process_sections(sections)
   for name, section in pairs(sections) do
     local left = name:sub(9, 10) < 'x'
-    for pos = 1, name ~= 'lualine_z' and #section or #section - 1 do
-      table.insert(section, pos * 2, { empty, color = { fg = '#f3f3f3', bg = '#f3f3f3' } })
-    end
     for id, comp in ipairs(section) do
       if type(comp) ~= 'table' then
         comp = { comp }
