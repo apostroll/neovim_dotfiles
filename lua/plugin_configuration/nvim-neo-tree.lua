@@ -156,5 +156,3 @@ neo_tree.setup({
 		}
 	}
 })
-
-vim.api.nvim_set_keymap('n', [[<C-\>]], ':NeoTreeRevealToggle<CR>', { noremap = true, silent = true })
