@@ -108,7 +108,7 @@ wk.register({
 			name = 'Rest plugin',
 			r = { '<Plug>RestNvim', 'Curl line under cursor' },
 			p = { '<Plug>RestNvimPreview', 'Preview Curl command' },
-		}
+		},
 	},
 }, opts)
 
