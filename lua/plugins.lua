@@ -93,6 +93,7 @@ return packer.startup({ function(use)
 		'neovim/nvim-lspconfig', -- enable LSP
 		requires = {
 			'simrat39/rust-tools.nvim', -- extra functionality over rust analyzer
+			'creativenull/diagnosticls-configs-nvim', -- diagnosticls configuration for several linters
 			'folke/which-key.nvim', -- handle LSP mappings using which-key
 		}
 	}
