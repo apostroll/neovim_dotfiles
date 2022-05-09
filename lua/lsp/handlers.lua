@@ -61,47 +61,16 @@ local function lsp_highlight_document(client)
 	end
 end
 
-local function lsp_keymaps(bufnr)
-	local status_ok, wk = pcall(require, 'which-key')
-	if not status_ok then
-		return
-	end
-
-	local opts = {
-		mode = "n",
-		prefix = "",
-		buffer = bufnr,
-		silent = true,
-		noremap = true,
-		nowait = false,
-	}
-
-	wk.register({
-		['g'] = {
-			name = 'Code Navigation',
-			D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'GoTo Declaration' },
-			d = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'GoTo Definition' },
-			i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'GoTo Implementation' },
-			r = { '<cmd>lua vim.lsp.buf.references()<CR>', 'GoTo References' },
-			n = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'GoTo Next Diagnostic' },
-			p = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'GoTo Previous Diagnostic' },
-			l = { '<cmd>lua vim.diagnostic.setloclist()<CR>', 'GoTo Diagnostics List' },
-			a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Actions' },
-		},
-		['K'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Show Documentation' },
-		['<C-k>'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature Help' },
-		['<localleader>'] = {
-			['d'] = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Floating Diagnostic' },
-			['f'] = { '<cmd>lua vim.lsp.buf.formatting_sync()<cr>', 'Format buffer' },
-		},
-	}, opts)
+local status_keymaps_ok, keymaps = pcall(require, 'lsp.keymaps')
+if not status_keymaps_ok then
+	return
 end
 
 M.on_attach = function(client, bufnr)
 	if client.name == 'tsserver' then
 		client.resolved_capabilities.document_formatting = false
 	end
-	lsp_keymaps(bufnr)
+	keymaps.lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
 end
 
