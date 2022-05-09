@@ -45,7 +45,12 @@ return packer.startup({ function(use)
 	use 'nvim-lua/popup.nvim' -- An implementation of the Popup API from vim in Neovim
 	use 'nvim-lua/plenary.nvim' -- Useful lua functions used by lots of plugins
 	use 'windwp/nvim-autopairs' -- Autopairs, integrates with both cmp and treesitter
-	use 'numToStr/Comment.nvim' -- Easily comment stuff
+	use {
+		'numToStr/Comment.nvim', -- Easily comment stuff
+		requires = {
+			'JoosepAlviste/nvim-ts-context-commentstring'
+		}
+	}
 
 	use 'preservim/tagbar' -- Displays a class outline (needs exuberant ctags)
 
