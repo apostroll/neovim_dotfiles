@@ -28,7 +28,7 @@ null_ls.setup({
 		formatting.shfmt,
 
 		-- diagnostics
-		diagnostics.luacheck.with({ extra_args = {'--globals', 'vim'}}),
+		diagnostics.luacheck.with({ extra_args = { '--globals', 'vim' } }),
 		diagnostics.flake8,
 		diagnostics.shellcheck,
 		diagnostics.zsh,
