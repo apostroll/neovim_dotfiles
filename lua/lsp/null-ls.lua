@@ -38,7 +38,6 @@ null_ls.setup({
 		code_actions.refactoring,
 	},
 	on_attach = function(client, bufnr)
-		print(client.name)
 		if client.name == 'null-ls' then
 			keymaps.lsp_keymaps(bufnr)
 		end
