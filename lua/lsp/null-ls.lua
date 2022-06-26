@@ -25,18 +25,13 @@ null_ls.setup({
 		formatting.sqlfluff,
 		formatting.trim_whitespace,
 		formatting.stylua,
-		formatting.erb_lint,
-		formatting.puppet_lint,
 		formatting.shfmt,
-		formatting.terrafmt,
 
 		-- diagnostics
 		diagnostics.luacheck.with({ extra_args = {'--globals', 'vim'}}),
 		diagnostics.flake8,
 		diagnostics.shellcheck,
 		diagnostics.zsh,
-		diagnostics.erb_lint,
-		diagnostics.puppet_lint,
 
 		-- code actions
 		code_actions.shellcheck,
