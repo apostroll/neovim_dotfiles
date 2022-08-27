@@ -5,7 +5,7 @@ end
 
 local diagnostics = {
 	'diagnostics',
-	sources = { 'ale', 'nvim_lsp'},
+	sources = { 'nvim_diagnostic', 'nvim_lsp' },
 	sections = { 'error', 'warn' },
 	symbols = { error = ' ', warn = ' ' },
 	colored = false,
@@ -31,19 +31,18 @@ end
 
 -- Put proper separators and gaps between components in sections
 local function process_sections(sections)
-  for name, section in pairs(sections) do
-    local left = name:sub(9, 10) < 'x'
-    for id, comp in ipairs(section) do
-      if type(comp) ~= 'table' then
-        comp = { comp }
-        section[id] = comp
-      end
-      comp.separator = left and { right = '' } or { left = '' }
-    end
-  end
-  return sections
+	for name, section in pairs(sections) do
+		local left = name:sub(9, 10) < 'x'
+		for id, comp in ipairs(section) do
+			if type(comp) ~= 'table' then
+				comp = { comp }
+				section[id] = comp
+			end
+			comp.separator = left and { right = '' } or { left = '' }
+		end
+	end
+	return sections
 end
-
 
 lualine.setup({
 	options = {
@@ -51,7 +50,7 @@ lualine.setup({
 		theme = 'auto',
 		component_separators = '',
 		section_separators = { left = '', right = '' },
-		disabled_filetypes = {'dashboard', 'NvimTree', 'Outline' },
+		disabled_filetypes = { 'dashboard', 'NvimTree', 'Outline' },
 	},
 	sections = process_sections({
 		lualine_a = { 'mode' },
@@ -70,6 +69,6 @@ lualine.setup({
 		lualine_z = {},
 	},
 	tabline = {},
-	extensions = {'quickfix'}
+	extensions = { 'quickfix' }
 
 })
