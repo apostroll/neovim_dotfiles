@@ -83,6 +83,8 @@ wk.register({
 		[','] = { ':tabnext<CR>', 'Next tab' },
 		['.'] = { ':tabprevious<CR>', 'Previous tab' },
 		T = { ':tabclose<CR>', 'Close tab' },
+		V = { ':vnew<CR>', 'New vertical Split' },
+		X = { ':new<CR>', 'New horizontal Split' },
 		l = { ':set list!<CR>', 'Toggle invisible characters' },
 		w = { [[:%s/\s\+$//<cr>:let @/=''<CR>]], 'Delete trailing spaces' },
 	},
@@ -92,9 +94,12 @@ wk.register({
 		},
 		t = {
 			name = 'Terraform Providers',
+			-- Use Ctrl-d to select a document
 			l = { [[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{}<cr>]], 'Official Provider List' },
 			c = { [[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'cloudflare/cloudflare'}<cr>]], 'Cloudflare Provider' },
 			a = { [[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'hashicorp/aws'}<cr>]], 'AWS Provider' },
+			g = { [[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'integrations/github'}<cr>]], 'Github Provider' },
+			v = { [[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'hashicorp/vault'}<cr>]], 'Vault Provider' },
 		},
 		b = {
 			name = 'Buffer Operations',
