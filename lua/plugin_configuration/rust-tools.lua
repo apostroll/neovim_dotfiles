@@ -6,7 +6,6 @@ end
 local opts = {
 	tools = { -- rust-tools options
 		autoSetHints = true,
-		hover_with_actions = true,
 		inlay_hints = {
 			only_current_line = false,
 			show_parameter_hints = true,
