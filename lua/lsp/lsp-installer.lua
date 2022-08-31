@@ -21,6 +21,11 @@ lsp_installer.on_server_ready(function(server)
 		opts = vim.tbl_deep_extend('force', clangd_opts, opts)
 	end
 
+	if server.name == 'solargraph' then
+		local solargraph_opts = require('lsp.settings.solargraph')
+		opts = vim.tbl_deep_extend('force', solargraph_opts, opts)
+	end
+
 	if server.name == 'rust_analyzer' then
 		-- Setup rust_analyzer options using the rust-tools plugin
 		return;
