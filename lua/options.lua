@@ -55,8 +55,7 @@ end
 vim.cmd 'set whichwrap+=<,>,[,],h,l'
 vim.cmd [[set iskeyword+=-]]
 
-vim.g.python3_host_prog = '~/.virtualenvs/neovim/bin/python3'
+vim.g.python3_host_prog = '/usr/bin/python3'
 vim.g.ruby_host_prog = '~/.rbenv/versions/2.7.4/bin/ruby'
-
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
