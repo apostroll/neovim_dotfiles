@@ -1,37 +1,45 @@
-local status_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
+local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
 if not status_ok then
 	return
 end
 
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
-	local opts = {
-		on_attach = require('lsp.handlers').on_attach,
-		capabilities = require('lsp.handlers').capabilities,
-	}
+lsp_installer.setup({
+	-- Automatically install LSP servers configured by lspconfig
+	automatic_installation = true,
+})
 
-	if server.name == 'sumneko_lua' then
-		local sumneko_opts = require('lsp.settings.sumneko_lua')
-		opts = vim.tbl_deep_extend('force', sumneko_opts, opts)
-	end
+local opts = {
+	on_attach = require("lsp.handlers").on_attach,
+	capabilities = require("lsp.handlers").capabilities,
+}
 
-	if server.name == 'clangd' then
-		local clangd_opts = require('lsp.settings.clangd')
-		opts = vim.tbl_deep_extend('force', clangd_opts, opts)
-	end
+local lsp_config_status_ok, lspconfig = pcall(require, "lspconfig")
+if not lsp_config_status_ok then
+	return
+end
 
-	if server.name == 'solargraph' then
-		local solargraph_opts = require('lsp.settings.solargraph')
-		opts = vim.tbl_deep_extend('force', solargraph_opts, opts)
-	end
+lspconfig.bashls.setup(opts)
 
-	if server.name == 'rust_analyzer' then
-		-- Setup rust_analyzer options using the rust-tools plugin
-		return;
-	end
+local clangd_opts = require("lsp.settings.clangd")
+lspconfig.clangd.setup(vim.tbl_deep_extend("force", opts, clangd_opts))
 
-	-- This setup() function is exactly the same as lspconfig's setup function.
-	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-	server:setup(opts)
-end)
+lspconfig.cssls.setup(opts)
+lspconfig.html.setup(opts)
+lspconfig.jedi_language_server.setup(opts)
+lspconfig.jsonls.setup(opts)
+lspconfig.ltex.setup(opts)
+lspconfig.prosemd_lsp.setup(opts)
+lspconfig.pylsp.setup(opts)
+
+local solargraph_opts = require('lsp.settings.solargraph')
+lspconfig.solargraph.setup(vim.tbl_deep_extend('force', opts, solargraph_opts ))
+
+lspconfig.sqlls.setup(opts)
+
+local sumneko_opts = require("lsp.settings.sumneko_lua")
+lspconfig.sumneko_lua.setup(vim.tbl_deep_extend("force", opts, sumneko_opts))
+
+lspconfig.sqlls.setup(opts)
+lspconfig.terraformls.setup(opts)
+lspconfig.tsserver.setup(opts)
+lspconfig.vimls.setup(opts)
