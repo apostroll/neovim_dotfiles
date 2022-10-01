@@ -55,8 +55,10 @@ lualine.setup({
 	sections = process_sections({
 		lualine_a = { 'mode' },
 		lualine_b = { branch, 'diff' },
-		lualine_c = { 'filename' },
 		lualine_x = {},
+		lualine_c = {
+			{'filename', path = 2, files_status = true}
+		},
 		lualine_y = { 'filetype', 'encoding', 'fileformat' },
 		lualine_z = { diagnostics, spaces },
 	}),
