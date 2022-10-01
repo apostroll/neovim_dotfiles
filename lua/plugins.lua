@@ -40,11 +40,30 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup({ function(use)
-	use 'wbthomason/packer.nvim' -- Have packer manage itself
-	use 'simnalamburt/vim-mundo' -- Provide visualization of vim's undo graph
-	use 'nvim-lua/popup.nvim' -- An implementation of the Popup API from vim in Neovim
-	use 'nvim-lua/plenary.nvim' -- Useful lua functions used by lots of plugins
-	use 'windwp/nvim-autopairs' -- Autopairs, integrates with both cmp and treesitter
+
+	use {
+		'wbthomason/packer.nvim', -- Have packer manage itself
+		requires = {
+			'nvim-lua/plenary.nvim',
+		}
+	}
+
+	use 'simnalamburt/vim-mundo' -- visualize neovim's undo graph
+
+	use {
+		'nvim-lua/popup.nvim', -- An implementation of the Popup API from vim in Neovim
+		requires = {
+			'nvim-lua/plenary.nvim',
+		}
+	}
+
+	use {
+		'windwp/nvim-autopairs', -- Autopairs, integrates with both cmp and treesitter
+		requires = {
+			'nvim-lua/plenary.nvim',
+		}
+	}
+
 	use {
 		'numToStr/Comment.nvim', -- Easily comment stuff
 		requires = {
@@ -55,7 +74,7 @@ return packer.startup({ function(use)
 	use 'preservim/tagbar' -- Displays a class outline (needs exuberant ctags)
 
 	use {
-		'nvim-neo-tree/neo-tree.nvim',
+		'nvim-neo-tree/neo-tree.nvim', -- file explorer
 		branch = 'v2.x',
 		requires = {
 			'nvim-lua/plenary.nvim',
@@ -68,87 +87,119 @@ return packer.startup({ function(use)
 		}
 	}
 
+	use 'godlygeek/tabular' -- vertically align text (see: :Tabularize)
 
-	use 'godlygeek/tabular' -- Adds Tabularize command to vertically align text
-	use 'moll/vim-bbye' -- Preserves layout when closing buffers
-	use 'nvim-lualine/lualine.nvim' -- eyecandy
-	use 'akinsho/toggleterm.nvim' -- Use terminal in vim buffers
-	use 'lewis6991/impatient.nvim' -- Improves loading times for lua files
-	use 'lukas-reineke/indent-blankline.nvim' -- Provides identation guides
-	use 'antoinemadec/FixCursorHold.nvim' -- This is needed to fix lsp doc highlight
+	use 'moll/vim-bbye' -- Preserves layout when closing buffers  (see: :Bdelete, :Bwipeout)
 
-	-- Colorschemes
-	use 'tanvirtin/monokai.nvim'
-
-	-- cmp plugins
-	use 'hrsh7th/nvim-cmp' -- The completion plugin
-	use 'hrsh7th/cmp-buffer' -- buffer completions
-	use 'hrsh7th/cmp-path' -- path completions
-	use 'hrsh7th/cmp-cmdline' -- cmdline completions
 	use {
-		'saadparwaiz1/cmp_luasnip', -- snippet completions
-		requires = {
-			'L3MON4D3/LuaSnip'
-		}
-	}
-	use 'hrsh7th/cmp-nvim-lsp'
-
-	-- LSP
-	use {
-		'neovim/nvim-lspconfig', -- enable LSP
-		requires = {
-			'simrat39/rust-tools.nvim', -- extra functionality over rust analyzer
-			'folke/which-key.nvim', -- handle LSP mappings using which-key
-		}
-	}
-	use 'williamboman/nvim-lsp-installer' -- simple to use language server installer
-	use 'tamago324/nlsp-settings.nvim' -- language server settings defined in json for
-	use {
-		'jose-elias-alvarez/null-ls.nvim', -- for formatters and linters
+		'nvim-lualine/lualine.nvim', -- eyecandy
 		requires = {
 			'nvim-lua/plenary.nvim',
 		}
 	}
 
-	-- Telescope
 	use {
-		'nvim-telescope/telescope.nvim',
+		'akinsho/toggleterm.nvim', -- terminal inside neovim
+		requires = {
+			'nvim-lua/plenary.nvim',
+		}
+	}
+
+	use {
+		'lewis6991/impatient.nvim', -- Improves loading times for lua files
+		requires = {
+			'nvim-lua/plenary.nvim',
+		}
+	}
+
+	use 'lukas-reineke/indent-blankline.nvim' -- Provides identation guides
+
+	use 'antoinemadec/FixCursorHold.nvim' -- This is needed to fix lsp doc highlight
+
+	-- Colorschemes
+	use 'tanvirtin/monokai.nvim'
+
+	-- completion plugins
+	use {
+		'hrsh7th/nvim-cmp', -- The completion plugin
+		requires = {
+			'hrsh7th/cmp-buffer', -- buffer completions
+			'hrsh7th/cmp-path', -- path completions
+			'hrsh7th/cmp-cmdline', -- cmdline completions
+			'hrsh7th/cmp-nvim-lsp', -- Neovim's LSP client
+		}
+	}
+
+	use {
+		'neovim/nvim-lspconfig', -- Configures Language Server Protocol (LSP) servers
+		requires = {
+			'nvim-lua/plenary.nvim',
+			'simrat39/rust-tools.nvim', -- extra functionality over rust analyzer
+			'folke/which-key.nvim', -- handle LSP mappings using which-key
+		}
+	}
+
+
+	use {
+		'williamboman/nvim-lsp-installer', -- simple to use language server installer
+		requires = {
+			'nvim-lua/plenary.nvim',
+		}
+	}
+
+	use 'tamago324/nlsp-settings.nvim' -- language server settings defined in json for
+
+	use {
+		'jose-elias-alvarez/null-ls.nvim', -- language server that runs formatters and linters found in $PATH
+		requires = {
+			'nvim-lua/plenary.nvim',
+		}
+	}
+
+	use {
+		'nvim-telescope/telescope.nvim', -- fuzzy finder
 		requires = {
 			'nvim-lua/plenary.nvim',
 			'ANGkeith/telescope-terraform-doc.nvim',
 		}
 	}
 
-	-- HTTP client for nvim (Requires curl, jq)
-	-- Also requires the following TreeSitter parsers: {http, json}
 	use {
-		'NTBBloodbath/rest.nvim',
+		'NTBBloodbath/rest.nvim', -- HTTP client for nvim (Requires curl, jq)
+		-- Also requires the following TreeSitter parsers: {http, json}
 		requires = {
 			'nvim-lua/plenary.nvim',
 		}
 	}
 
-	-- Display keymappings for plugins that support it
-	use 'folke/which-key.nvim'
-
+	use {
+		'folke/which-key.nvim', -- Display keymappings for plugins that support it
+		requires = {
+			'nvim-lua/plenary.nvim',
+		}
+	}
 
 	-- Treesitter
 	use {
-		'nvim-treesitter/nvim-treesitter',
+		'nvim-treesitter/nvim-treesitter', -- generates syntax tree from sources used for better highlighting
 		run = ':TSUpdate',
+		requires = {
+			'nvim-lua/plenary.nvim',
+		}
 	}
 
-	-- Git
-	use 'tpope/vim-fugitive'
-	use 'lewis6991/gitsigns.nvim'
-
-	-- HTML
 	use {
-		'mattn/emmet-vim',
-		ft = { 'html', 'eruby', 'javascriptreact' }
+		'tpope/vim-fugitive', -- Git on steroids :P
+		requires = {
+			'tpope/vim-rhubarb',
+		}
 	}
 
-	use 'rodjek/vim-puppet'
+	use 'lewis6991/gitsigns.nvim' -- marks new/modified/deleted lines in buffer
+
+	use 'mattn/emmet-vim' -- compose html using css selector syntax
+
+	use 'rodjek/vim-puppet' -- helpers for puppet
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
@@ -156,7 +207,7 @@ return packer.startup({ function(use)
 		require('packer').sync()
 	end
 end,
-config = {
-	compile_path = require('packer.util').join_paths(vim.fn.stdpath('config'), '.plugin', 'packer_compiled.lua'),
-}
+	config = {
+		compile_path = require('packer.util').join_paths(vim.fn.stdpath('config'), '.plugin', 'packer_compiled.lua'),
+	}
 })
