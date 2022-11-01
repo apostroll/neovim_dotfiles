@@ -1,4 +1,4 @@
-vim.cmd [[
+vim.cmd([[
 	augroup _spelling
 		autocmd!
 		autocmd FileType gitcommit,markdown setlocal wrap spell
@@ -20,4 +20,4 @@ vim.cmd [[
 		autocmd!
 		autocmd BufReadPost fugitive://* set bufhidden=delete
 	augroup end
-]]
+]])

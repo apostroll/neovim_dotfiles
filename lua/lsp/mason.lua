@@ -1,10 +1,10 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+local status_ok, mason = pcall(require, "mason")
 if not status_ok then
 	return
 end
 
-lsp_installer.setup({
-	-- Automatically install LSP servers configured by lspconfig
+mason.setup()
+require("mason-lspconfig").setup({
 	automatic_installation = true,
 })
 
@@ -26,13 +26,11 @@ lspconfig.clangd.setup(vim.tbl_deep_extend("force", opts, clangd_opts))
 lspconfig.cssls.setup(opts)
 lspconfig.html.setup(opts)
 lspconfig.jedi_language_server.setup(opts)
+lspconfig.pylsp.setup(opts)
 lspconfig.jsonls.setup(opts)
 lspconfig.ltex.setup(opts)
 lspconfig.prosemd_lsp.setup(opts)
-lspconfig.pylsp.setup(opts)
-
-local solargraph_opts = require('lsp.settings.solargraph')
-lspconfig.solargraph.setup(vim.tbl_deep_extend('force', opts, solargraph_opts ))
+lspconfig.rust_analyzer.setup(opts)
 
 lspconfig.sqlls.setup(opts)
 

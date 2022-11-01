@@ -1,4 +1,4 @@
-local status_ok, null_ls = pcall(require, 'null-ls')
+local status_ok, null_ls = pcall(require, "null-ls")
 if not status_ok then
 	return
 end
@@ -10,7 +10,7 @@ local diagnostics = null_ls.builtins.diagnostics
 
 local code_actions = null_ls.builtins.code_actions
 
-local status_keymaps_ok, keymaps = pcall(require, 'lsp.keymaps')
+local status_keymaps_ok, keymaps = pcall(require, "lsp.keymaps")
 if not status_keymaps_ok then
 	return
 end
@@ -18,8 +18,8 @@ end
 null_ls.setup({
 	sources = {
 		-- formatting
-		formatting.prettier.with({ extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote' } }),
-		formatting.black.with({ extra_args = { '--fast' } }),
+		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.jq,
 		formatting.rustfmt,
 		formatting.sqlfluff,
@@ -28,7 +28,7 @@ null_ls.setup({
 		formatting.shfmt,
 
 		-- diagnostics
-		diagnostics.luacheck.with({ extra_args = { '--globals', 'vim' } }),
+		diagnostics.luacheck.with({ extra_args = { "--globals", "vim" } }),
 		diagnostics.flake8,
 		diagnostics.shellcheck,
 		diagnostics.zsh,
@@ -38,8 +38,8 @@ null_ls.setup({
 		code_actions.refactoring,
 	},
 	on_attach = function(client, bufnr)
-		if client.name == 'null-ls' then
+		if client.name == "null-ls" then
 			keymaps.lsp_keymaps(bufnr)
 		end
-	end
+	end,
 })

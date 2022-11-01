@@ -16,7 +16,7 @@ local opts = {
 	},
 	server = {
 		standalone = true,
-	}
+	},
 }
 
 rust_tools.setup(opts)

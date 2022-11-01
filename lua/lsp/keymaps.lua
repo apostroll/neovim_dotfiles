@@ -24,7 +24,6 @@ M.lsp_keymaps = function(bufnr)
 			r = { "<cmd>lua vim.lsp.buf.references()<CR>", "GoTo References" },
 			n = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "GoTo Next Diagnostic" },
 			p = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "GoTo Previous Diagnostic" },
-			l = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "GoTo Diagnostics List" },
 			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
 		},
 		["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show Documentation" },
