@@ -10,11 +10,6 @@ local diagnostics = null_ls.builtins.diagnostics
 
 local code_actions = null_ls.builtins.code_actions
 
-local status_keymaps_ok, keymaps = pcall(require, "lsp.keymaps")
-if not status_keymaps_ok then
-	return
-end
-
 null_ls.setup({
 	sources = {
 		-- formatting
@@ -37,9 +32,5 @@ null_ls.setup({
 		code_actions.shellcheck,
 		code_actions.refactoring,
 	},
-	on_attach = function(client, bufnr)
-		if client.name == "null-ls" then
-			keymaps.lsp_keymaps(bufnr)
-		end
-	end,
+	on_attach = require('lsp.handlers').on_attach,
 })

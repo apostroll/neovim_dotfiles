@@ -44,9 +44,10 @@ end
 M.on_attach = function(client, bufnr)
 	-- Autoformat buffer on save, if the server supports it
 	if client.server_capabilities.documentFormattingProvider then
+		print("Setting up autoformat")
 		vim.api.nvim_command([[augroup Format]])
 		vim.api.nvim_command([[autocmd! * <buffer>]])
-		vim.api.nvim_command([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]])
+		vim.api.nvim_command([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]])
 		vim.api.nvim_command([[augroup END]])
 	end
 
