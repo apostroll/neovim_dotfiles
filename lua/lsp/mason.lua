@@ -35,7 +35,7 @@ lspconfig.rust_analyzer.setup(opts)
 lspconfig.sqlls.setup(opts)
 
 local sumneko_opts = require("lsp.settings.sumneko_lua")
-lspconfig.sumneko_lua.setup(vim.tbl_deep_extend("force", opts, sumneko_opts))
+lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", opts, sumneko_opts))
 
 lspconfig.sqlls.setup(opts)
 lspconfig.terraformls.setup(opts)
