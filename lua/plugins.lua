@@ -78,16 +78,9 @@ return packer.startup({
 		use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
 
 		use({
-			"nvim-neo-tree/neo-tree.nvim", -- file explorer
-			branch = "v2.x",
+			"nvim-tree/nvim-tree.lua",
 			requires = {
-				"nvim-lua/plenary.nvim",
-				"kyazdani42/nvim-web-devicons",
-				"MunifTanjim/nui.nvim",
-				{
-					"s1n7ax/nvim-window-picker",
-					tag = "1.*",
-				},
+				"nvim-tree/nvim-web-devicons", -- optional, for file icons
 			},
 		})
 

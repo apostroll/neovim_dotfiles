@@ -71,7 +71,7 @@ wk.register({
 		"Toggle spellcheck",
 	},
 	["<C-\\>"] = {
-		":NeoTreeRevealToggle<CR>",
+		":NvimTreeToggle<CR>",
 		"Toggle File Explorer",
 	},
 	["<C-p>"] = {
