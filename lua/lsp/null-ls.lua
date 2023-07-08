@@ -26,6 +26,7 @@ null_ls.setup({
 		-- diagnostics
 		diagnostics.luacheck.with({ extra_args = { "--globals", "vim" } }),
 		diagnostics.flake8,
+		diagnostics.djlint,
 		diagnostics.shellcheck,
 		diagnostics.zsh,
 		diagnostics.golangci_lint,
