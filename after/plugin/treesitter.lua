@@ -26,6 +26,7 @@ configs.setup({
 		"bash",
 		"terraform",
 		"hcl",
+		"go",
 	},
 	autopairs = {
 		enable = true,

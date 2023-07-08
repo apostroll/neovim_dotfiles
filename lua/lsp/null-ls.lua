@@ -21,12 +21,14 @@ null_ls.setup({
 		formatting.stylua,
 		formatting.shfmt,
 		formatting.terraform_fmt,
+		formatting.gofmt,
 
 		-- diagnostics
 		diagnostics.luacheck.with({ extra_args = { "--globals", "vim" } }),
 		diagnostics.flake8,
 		diagnostics.shellcheck,
 		diagnostics.zsh,
+		diagnostics.golangci_lint,
 
 		-- code actions
 		code_actions.shellcheck,
