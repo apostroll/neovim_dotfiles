@@ -32,5 +32,5 @@ null_ls.setup({
 		code_actions.shellcheck,
 		code_actions.refactoring,
 	},
-	on_attach = require('lsp.handlers').on_attach,
+	on_attach = require("lsp.handlers").on_attach,
 })

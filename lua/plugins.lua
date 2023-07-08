@@ -122,9 +122,9 @@ return packer.startup({
 		use("L3MON4D3/LuaSnip")
 
 		use({
-			"williamboman/mason.nvim", -- simple to use language server installer
+			"williamboman/mason.nvim",  -- simple to use language server installer
 			"williamboman/mason-lspconfig.nvim", -- bridges mason.nvim with the lspconfig plugin
-			"neovim/nvim-lspconfig", -- Configures Language Server Protocol (LSP) servers
+			"neovim/nvim-lspconfig",    -- Configures Language Server Protocol (LSP) servers
 		})
 		use("simrat39/rust-tools.nvim") -- extra functionality over rust analyzer
 
@@ -178,7 +178,7 @@ return packer.startup({
 
 		use("lewis6991/gitsigns.nvim") -- marks new/modified/deleted lines in buffer
 
-		use("mattn/emmet-vim") -- compose html using css selector syntax
+		use("mattn/emmet-vim")   -- compose html using css selector syntax
 
 		use("rodjek/vim-puppet") -- helpers for puppet
 
