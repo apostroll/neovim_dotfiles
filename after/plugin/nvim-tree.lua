@@ -6,5 +6,6 @@ end
 nvim_tree.setup({
 	filters = {
 		dotfiles = true,
+		custom = { "__pycache__" },
 	},
 })
