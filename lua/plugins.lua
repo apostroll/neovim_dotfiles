@@ -109,8 +109,6 @@ return packer.startup({
 			},
 		})
 
-		use("lukas-reineke/indent-blankline.nvim") -- Provides identation guides
-
 		use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
 
 		-- Colorschemes
