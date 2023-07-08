@@ -113,6 +113,7 @@ return packer.startup({
 
 		-- Colorschemes
 		use("tanvirtin/monokai.nvim")
+		use("ellisonleao/gruvbox.nvim")
 
 		-- completion plugins
 		use("onsails/lspkind-nvim") -- vscode-like pictograms
