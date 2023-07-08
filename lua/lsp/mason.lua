@@ -39,5 +39,6 @@ lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", opts, sumneko_opts))
 
 lspconfig.sqlls.setup(opts)
 lspconfig.terraformls.setup(opts)
+lspconfig.tflint.setup(opts)
 lspconfig.tsserver.setup(opts)
 lspconfig.vimls.setup(opts)

@@ -24,6 +24,7 @@ configs.setup({
 		"haskell",
 		"latex",
 		"bash",
+		"terraform",
 		"hcl",
 	},
 	autopairs = {

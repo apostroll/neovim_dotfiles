@@ -21,6 +21,7 @@ null_ls.setup({
 		formatting.trim_whitespace,
 		formatting.stylua,
 		formatting.shfmt,
+		formatting.terraform_fmt,
 
 		-- diagnostics
 		diagnostics.luacheck.with({ extra_args = { "--globals", "vim" } }),
