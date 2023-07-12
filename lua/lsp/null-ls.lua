@@ -30,6 +30,7 @@ null_ls.setup({
 		diagnostics.shellcheck,
 		diagnostics.zsh,
 		diagnostics.golangci_lint,
+		diagnostics.puppet_lint,
 
 		-- code actions
 		code_actions.shellcheck,
