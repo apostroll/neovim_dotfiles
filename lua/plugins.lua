@@ -33,16 +33,6 @@ lazy.setup({
 	"moll/vim-bbye",
 	-- vscode-like pictograms for neovim's lsp
 	"onsails/lspkind-nvim",
-	-- Snippet thingy I'm not using
-	"L3MON4D3/LuaSnip",
-	-- simple to use language server installer
-	"williamboman/mason.nvim",
-	-- bridges mason.nvim with the lspconfig plugin
-	"williamboman/mason-lspconfig.nvim",
-	-- Configures Language Server Protocol (LSP) servers
-	"neovim/nvim-lspconfig",
-	-- extra functionality over rust analyzer
-	"simrat39/rust-tools.nvim",
 	-- language server settings defined in json for
 	"tamago324/nlsp-settings.nvim",
 	-- marks new/modified/deleted lines in buffer
@@ -56,16 +46,6 @@ lazy.setup({
 		"windwp/nvim-autopairs",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-		},
-	},
-	{
-		-- The completion plugin
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			-- nvim-cmp source for buffer words
-			"hrsh7th/cmp-buffer",
-			-- nvim-cmp source for neovim's built-in LSP
-			"hrsh7th/cmp-nvim-lsp",
 		},
 	},
 	{
@@ -105,12 +85,34 @@ lazy.setup({
 		},
 	},
 	{
-		-- language server that runs formatters and linters found in $PATH
-		"jose-elias-alvarez/null-ls.nvim",
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v3.x",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			-- LSP Support
+			-- Configures Language Server Protocol (LSP) servers (Required)
+			{ "neovim/nvim-lspconfig" },
+			-- simple to use language server installer (Optional)
+			{ "williamboman/mason.nvim" },
+			-- bridges mason.nvim with the lspconfig plugin (Optional)
+			{ "williamboman/mason-lspconfig.nvim" },
+
+			-- Autocompletion
+			-- The completion plugin (Required)
+			{ "hrsh7th/nvim-cmp" },
+			-- nvim-cmp source for neovim's built-in LSP (Required)
+			{ "hrsh7th/cmp-nvim-lsp" },
+			-- nvim-cmp source for buffer words (Optional)
+			{ "hrsh7th/cmp-buffer" },
+			-- Snippet thingy I'm not really using (Required)
+			{ "L3MON4D3/LuaSnip" },
 		},
-		pin = true, -- plugin archived. No further updates.
+	},
+	{
+		-- Diagnostics
+		"jay-babu/mason-null-ls.nvim",
+		dependencies = {
+			"jose-elias-alvarez/null-ls.nvim" ,
+		},
 	},
 	{
 		-- fuzzy finder

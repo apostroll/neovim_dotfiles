@@ -58,17 +58,9 @@ wk.register({
 		"y$",
 		"Yank from cursor to end of line like `D`",
 	},
-	["<F3>"] = {
-		":MundoToggle<CR>",
-		"Undo Visualization",
-	},
-	["<F2>"] = {
+	["<M-\\>"] = {
 		":TagbarToggle<CR>",
 		"Ctags Explorer",
-	},
-	["<F9>"] = {
-		":set spell!<CR>",
-		"Toggle spellcheck",
 	},
 	["<C-\\>"] = {
 		":NvimTreeToggle<CR>",
@@ -112,6 +104,8 @@ wk.register({
 			":WhichKey<CR>",
 			"Open WhichKey",
 		},
+		u = { ":MundoToggle<CR>", "Undo Visualization"},
+		s = { ":set spell!<CR>", "Toggle spellcheck"},
 		t = {
 			name = "Terraform Providers",
 			-- Use Ctrl-d to select a document
