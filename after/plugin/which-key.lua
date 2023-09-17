@@ -58,6 +58,10 @@ wk.register({
 		"y$",
 		"Yank from cursor to end of line like `D`",
 	},
+	["J"] = {
+		"mzJ`z",
+		"Join lines keeping cursor in its original position"
+	},
 	["<M-\\>"] = {
 		":TagbarToggle<CR>",
 		"Ctags Explorer",
@@ -70,6 +74,8 @@ wk.register({
 		[[<cmd>lua require('telescope.builtin').find_files()<CR>]],
 		"Fuzzy File Finder",
 	},
+	["<C-u>"] = {"<C-u>zz", "Page Up keeping cursor in the middle"},
+	["<C-d>"] = {"<C-d>zz", "Page Down keeping cursor in the middle"},
 	["<M-p>"] = {
 		[[<cmd>lua require('telescope.builtin').find_files({search_dirs = {'~/.config/nvim'} })<cr>]],
 		"NeoVim Config Finder",
@@ -164,4 +170,22 @@ wk.register({
 		">gv",
 		"Increase identation and remain in visual mode",
 	},
+	J = {":m '>+1<CR>gv=gv", "Move selected lines down"},
+	K = {":m '<-2<CR>gv=gv", "Move selected lines down"},
 }, visual_opts)
+
+local insert_opts = {
+	mode = "i",
+	prefix = "",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+}
+
+wk.register({
+	["<C-c>"] = {
+		"<Esc>",
+		"When exiting visual block mode with Ctrl-C, changes are normally lost. Using <Esc> keeps the changes."
+	}
+}, insert_opts)
