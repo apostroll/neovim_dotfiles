@@ -46,6 +46,7 @@ local options = {
 
 vim.opt.diffopt:append("algorithm:patience") -- better diffing: https://vimways.org/2018/the-power-of-diff/
 vim.opt.diffopt:append("indent-heuristic")
+vim.opt.diffopt:append("linematch:60")
 vim.opt.path:append({ "**" }) -- Search files in subfolders
 vim.opt.wildignore:append({ "*/node_modules/*" })
 
