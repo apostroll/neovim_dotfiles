@@ -44,3 +44,12 @@ vim.api.nvim_create_autocmd("CmdWinEnter", {
 	end,
 	group = "_cmd_win",
 })
+
+vim.api.nvim_create_augroup("_terraform", { clear = true })
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = "*.tf",
+	callback = function()
+		vim.api.nvim_set_option_value("filetype", "hcl", { scope = "local" })
+	end,
+	group = "_terraform",
+})
