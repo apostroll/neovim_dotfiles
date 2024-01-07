@@ -46,6 +46,10 @@ local opts = {
 }
 
 wk.register({
+	["J"] = {
+		"mzJ`z",
+		"Join lines keeping cursor in its original position",
+	},
 	["n"] = {
 		"nzz",
 		"Find next and center on screen",
@@ -57,10 +61,6 @@ wk.register({
 	["Y"] = {
 		"y$",
 		"Yank from cursor to end of line like `D`",
-	},
-	["J"] = {
-		"mzJ`z",
-		"Join lines keeping cursor in its original position"
 	},
 	["<M-\\>"] = {
 		":TagbarToggle<CR>",
@@ -74,12 +74,12 @@ wk.register({
 		[[<cmd>lua require('telescope.builtin').find_files()<CR>]],
 		"Fuzzy File Finder",
 	},
-	["<C-u>"] = {"<C-u>zz", "Page Up keeping cursor in the middle"},
-	["<C-d>"] = {"<C-d>zz", "Page Down keeping cursor in the middle"},
 	["<M-p>"] = {
 		[[<cmd>lua require('telescope.builtin').find_files({search_dirs = {'~/.config/nvim'} })<cr>]],
 		"NeoVim Config Finder",
 	},
+	["<C-u>"] = { "<C-u>zz", "Page Up keeping cursor in the middle" },
+	["<C-d>"] = { "<C-d>zz", "Page Down keeping cursor in the middle" },
 	g = {
 		l = {
 			[[:Telescope diagnostics<CR>]],
@@ -88,6 +88,8 @@ wk.register({
 	},
 	["<leader>"] = {
 		a = { "<cmd>lua GrepInputString()<CR>", "Grep Files" },
+		c = { ":ToggleTerm direction=horizontal<CR>", "Open a floating terminal" },
+		C = { ":ToggleTerm direction=float<CR>", "Open a floating terminal" },
 		g = {
 			name = "Git Fugitive",
 			s = { ":G<CR>", "Git status" },
@@ -96,13 +98,15 @@ wk.register({
 			b = { ":G blame<CR>", "Git blame" },
 			p = { ":G push<CR>", "Git push" },
 		},
+		l = { ":set list!<CR>", "Toggle invisible characters" },
+		s = { ":set spell!<CR>", "Toggle spellcheck" },
 		t = { ":tabnew<CR>", "New tab" },
+		T = { ":tabclose<CR>", "Close tab" },
 		[","] = { ":tabnext<CR>", "Next tab" },
 		["."] = { ":tabprevious<CR>", "Previous tab" },
-		T = { ":tabclose<CR>", "Close tab" },
+		u = { ":MundoToggle<CR>", "Undo Visualization" },
 		V = { ":vnew<CR>", "New vertical Split" },
 		X = { ":new<CR>", "New horizontal Split" },
-		l = { ":set list!<CR>", "Toggle invisible characters" },
 		w = { [[:%s/\s\+$//<cr>:let @/=''<CR>]], "Delete trailing spaces" },
 	},
 	["<localleader>"] = {
@@ -110,8 +114,6 @@ wk.register({
 			":WhichKey<CR>",
 			"Open WhichKey",
 		},
-		u = { ":MundoToggle<CR>", "Undo Visualization"},
-		s = { ":set spell!<CR>", "Toggle spellcheck"},
 		t = {
 			name = "Terraform Providers",
 			-- Use Ctrl-d to select a document
@@ -142,8 +144,6 @@ wk.register({
 			D = { ":bdelete<CR>", "Delete buffer" },
 			w = { ":Bwipeout<CR>", "Wipe buffer preserving layout" },
 		},
-		C = { ":ToggleTerm direction=float<CR>", "Open a floating terminal" },
-		c = { ":ToggleTerm direction=horizontal<CR>", "Open a floating terminal" },
 		r = {
 			name = "Rest plugin",
 			r = { "<Plug>RestNvim", "Curl line under cursor" },
@@ -170,8 +170,8 @@ wk.register({
 		">gv",
 		"Increase identation and remain in visual mode",
 	},
-	J = {":m '>+1<CR>gv=gv", "Move selected lines down"},
-	K = {":m '<-2<CR>gv=gv", "Move selected lines down"},
+	J = { ":m '>+1<CR>gv=gv", "Move selected lines down" },
+	K = { ":m '<-2<CR>gv=gv", "Move selected lines down" },
 }, visual_opts)
 
 local insert_opts = {
@@ -186,6 +186,6 @@ local insert_opts = {
 wk.register({
 	["<C-c>"] = {
 		"<Esc>",
-		"When exiting visual block mode with Ctrl-C, changes are normally lost. Using <Esc> keeps the changes."
-	}
+		"When exiting visual block mode with Ctrl-C, changes are normally lost. Using <Esc> keeps the changes.",
+	},
 }, insert_opts)
