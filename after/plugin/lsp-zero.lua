@@ -5,16 +5,16 @@ end
 
 lsp.preset("recommended")
 
-local cmp = require('cmp')
+local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = cmp.mapping.preset.insert({
-	['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-	['<Tab>'] = cmp.mapping.confirm({ select = true }),
-	['<CR>'] = cmp.mapping.confirm({ select = true }),
-	['<C-Space>'] = cmp.mapping.complete(),
-	['<C-u>'] = cmp.mapping.scroll_docs(-4),
-	['<C-d>'] = cmp.mapping.scroll_docs(4),
+	["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+	["<Tab>"] = cmp.mapping.confirm({ select = true }),
+	["<CR>"] = cmp.mapping.confirm({ select = true }),
+	["<C-Space>"] = cmp.mapping.complete(),
+	["<C-u>"] = cmp.mapping.scroll_docs(-4),
+	["<C-d>"] = cmp.mapping.scroll_docs(4),
 })
 
 cmp.setup({
@@ -22,7 +22,7 @@ cmp.setup({
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
-	mapping = cmp_mappings
+	mapping = cmp_mappings,
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -60,8 +60,8 @@ lsp.on_attach(function(client, bufnr)
 	}, normal_opts)
 end)
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
+require("mason").setup({})
+require("mason-lspconfig").setup({
 	ensure_installed = {
 		"jedi_language_server",
 		"jsonls",
@@ -73,9 +73,20 @@ require('mason-lspconfig').setup({
 	handlers = {
 		lsp.default_setup,
 		lua_ls = function()
-			require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+			require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 		end,
-	}
+		rust_analyzer = function()
+			require("lspconfig").rust_analyzer.setup({
+				settings = {
+					["rust-analyzer"] = {
+						checkOnSave = {
+							command = "clippy",
+						},
+					},
+				},
+			})
+		end,
+	},
 })
 
 lsp.setup()
