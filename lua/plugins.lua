@@ -124,14 +124,6 @@ lazy.setup({
 		},
 	},
 	{
-		-- HTTP client for nvim (Requires curl, jq)
-		"NTBBloodbath/rest.nvim",
-		-- Also requires the following TreeSitter parsers: {http, json}
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-	},
-	{
 		-- Display keymappings for plugins that support it
 		"folke/which-key.nvim",
 		dependencies = {
