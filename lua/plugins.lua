@@ -49,13 +49,6 @@ lazy.setup({
 		},
 	},
 	{
-		-- Easily comment stuff
-		"numToStr/Comment.nvim",
-		dependencies = {
-			"JoosepAlviste/nvim-ts-context-commentstring",
-		},
-	},
-	{
 		-- eyecandy with eyecandy dependencies
 		"akinsho/bufferline.nvim",
 		version = "*",
