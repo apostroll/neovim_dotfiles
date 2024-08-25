@@ -20,172 +20,78 @@ wk.setup({
 			suggestions = 20,
 		},
 		presets = {
-			operators = true,
+			operators = false,
 			motions = false,
-			text_objects = true,
-			windows = true,
-			nav = true,
+			text_objects = false,
+			windows = false,
+			nav = false,
 			z = true,
-			g = true,
+			g = false,
 		},
 	},
-	key_labels = {
+	replace = {
 		["<space>"] = "SPC",
 		["<leader>"] = ",",
 		["<localleader>"] = "SPC",
 	},
 })
 
-local opts = {
-	mode = "n",
-	prefix = "",
-	buffer = nil,
-	silent = true,
-	noremap = true,
-	nowait = false,
-}
-
-wk.register({
-	["J"] = {
-		"mzJ`z",
-		"Join lines keeping cursor in its original position",
+wk.add({
+	{
+		mode = {"n"},
+		{"J", "mJ`z", desc="Join lines keeping cursor in its original position"},
+		{"n", "nzz", desc="Find next and center on screen"},
+		{"N", "Nzz", desc="Find previous and center on screen"},
+		{"Y", "y$", desc="Yank from cursor to end of line like `D`"},
+		{"<C-p>", [[<cmd>lua require('telescope.builtin').find_files()<CR>]], desc="Fuzzy File Finder"},
+		{"<M-p>", [[<cmd>lua require('telescope.builtin').find_files({search_dirs = {'~/.config/nvim'} })<cr>]], desc="NeoVim Config Finder"},
+		{"<C-u>", "<C-u>zz", desc="Page Up keeping cursor in the middle"},
+		{"<C-d>", "<C-d>zz", desc="Page Down keeping cursor in the middle"},
+		{"gl", [[:Telescope diagnostics<CR>]], desc="Diagnostics List"},
+		{"<leader>a", "<cmd>lua GrepInputString()<CR>", desc="Grep Files"},
+		{"<leader>c", ":ToggleTerm direction=horizontal<CR>", desc="Open a floating terminal"},
+		{"<leader>C", ":ToggleTerm direction=float<CR>", desc="Open a floating terminal"},
+		{"<leader>g", group="git"},
+		{"<leader>gs", ":G<CR>", desc="Git status"},
+		{"<leader>gd", ":G diff<CR>", desc="Git diff"},
+		{"<leader>gf", ":G fetch<CR>", desc="Git fetch"},
+		{"<leader>gb", ":G blame<CR>", desc="Git blame"},
+		{"<leader>gp", ":G push<CR>", desc="Git push"},
+		{"<leader>l", ":set list!<CR>", desc="Toggle invisible characters"},
+		{"<leader>s", ":set spell!<CR>", desc="Toggle spellcheck"},
+		{"<leader>t", ":tabnew<CR>", desc="New tab"},
+		{"<leader>T", ":tabclose<CR>", desc="Close tab"},
+		{"<leader>,", ":tabnext<CR>", desc="Next tab"},
+		{"<leader>.", ":tabprevious<CR>", desc="Previous tab"},
+		{"<M-\\>", ":TagbarToggle<CR>", desc="Ctags Explorer"},
+		{"<C-\\>", ":NvimTreeToggle<CR>", desc="Toggle File Explorer"},
+		{"<leader>u", ":MundoToggle<CR>", desc="Undo Visualization"},
+		{"<leader>V", ":vnew<CR>", desc="New vertical Split"},
+		{"<leader>X", ":new<CR>", desc="New horizontal Split"},
+		{"<leader>w", [[:%s/\s\+$//<cr>:let @/=''<CR>]], desc="Delete trailing spaces"},
+		{"<localleader><localleader>", ":WhichKey<CR>", desc="Open WhichKey"},
+		{"<localleader>t", group="terraform"},
+		{"<localleader>tl", [[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{}<cr>]], desc="Official Providers"},
+		{"<localleader>tc", [[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'cloudflare/cloudflare'}<cr>]], desc="Cloudflare"},
+		{"<localleader>ta", [[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'hashicorp/aws'}<cr>]], desc="AWS"},
+		{"<localleader>tg", [[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'integrations/github'}<cr>]], desc="Github"},
+		{"<localleader>tv", [[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'hashicorp/vault'}<cr>]], desc="Vault"},
+		{"<localleader>b", group="buffers"},
+		{"<localleader>bd", ":Bdelete<CR>", desc="Delete buffer preserving layout"},
+		{"<localleader>bD", ":bdelete<CR>", desc="Delete buffer"},
+		{"<localleader>bw", ":Bwipeout<CR>", desc="Wipe buffer preserving layout"},
+		{"<localleader>rr", "<Plug>RestNvim", desc="Curl line under cursor"},
+		{"<localleader>rp", "<Plug>RestNvimPreview", desc="Preview Curl command"},
 	},
-	["n"] = {
-		"nzz",
-		"Find next and center on screen",
+	{
+		mode = {"v"},
+		{"<", "<gv", desc="Reduce identation and remain in visual mode"},
+		{">", ">gv", desc="Increase identation and remain in visual mode"},
+		{"J", ":m '>+1<CR>gv=gv", desc="Move selected lines down"},
+		{"K", ":m '<-2<CR>gv=gv", desc="Move selected lines down"},
 	},
-	["N"] = {
-		"Nzz",
-		"Find previous and center on screen",
-	},
-	["Y"] = {
-		"y$",
-		"Yank from cursor to end of line like `D`",
-	},
-	["<M-\\>"] = {
-		":TagbarToggle<CR>",
-		"Ctags Explorer",
-	},
-	["<C-\\>"] = {
-		":NvimTreeToggle<CR>",
-		"Toggle File Explorer",
-	},
-	["<C-p>"] = {
-		[[<cmd>lua require('telescope.builtin').find_files()<CR>]],
-		"Fuzzy File Finder",
-	},
-	["<M-p>"] = {
-		[[<cmd>lua require('telescope.builtin').find_files({search_dirs = {'~/.config/nvim'} })<cr>]],
-		"NeoVim Config Finder",
-	},
-	["<C-u>"] = { "<C-u>zz", "Page Up keeping cursor in the middle" },
-	["<C-d>"] = { "<C-d>zz", "Page Down keeping cursor in the middle" },
-	g = {
-		l = {
-			[[:Telescope diagnostics<CR>]],
-			"Diagnostics List",
-		},
-	},
-	["<leader>"] = {
-		a = { "<cmd>lua GrepInputString()<CR>", "Grep Files" },
-		c = { ":ToggleTerm direction=horizontal<CR>", "Open a floating terminal" },
-		C = { ":ToggleTerm direction=float<CR>", "Open a floating terminal" },
-		g = {
-			name = "Git Fugitive",
-			s = { ":G<CR>", "Git status" },
-			d = { ":G diff<CR>", "Git diff" },
-			f = { ":G fetch<CR>", "Git fetch" },
-			b = { ":G blame<CR>", "Git blame" },
-			p = { ":G push<CR>", "Git push" },
-		},
-		l = { ":set list!<CR>", "Toggle invisible characters" },
-		s = { ":set spell!<CR>", "Toggle spellcheck" },
-		t = { ":tabnew<CR>", "New tab" },
-		T = { ":tabclose<CR>", "Close tab" },
-		[","] = { ":tabnext<CR>", "Next tab" },
-		["."] = { ":tabprevious<CR>", "Previous tab" },
-		u = { ":MundoToggle<CR>", "Undo Visualization" },
-		V = { ":vnew<CR>", "New vertical Split" },
-		X = { ":new<CR>", "New horizontal Split" },
-		w = { [[:%s/\s\+$//<cr>:let @/=''<CR>]], "Delete trailing spaces" },
-	},
-	["<localleader>"] = {
-		["<localleader>"] = {
-			":WhichKey<CR>",
-			"Open WhichKey",
-		},
-		t = {
-			name = "Terraform Providers",
-			-- Use Ctrl-d to select a document
-			l = {
-				[[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{}<cr>]],
-				"Official Provider List",
-			},
-			c = {
-				[[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'cloudflare/cloudflare'}<cr>]],
-				"Cloudflare Provider",
-			},
-			a = {
-				[[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'hashicorp/aws'}<cr>]],
-				"AWS Provider",
-			},
-			g = {
-				[[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'integrations/github'}<cr>]],
-				"Github Provider",
-			},
-			v = {
-				[[<cmd>lua require('telescope._extensions.terraform_doc.builtin').search{full_name = 'hashicorp/vault'}<cr>]],
-				"Vault Provider",
-			},
-		},
-		b = {
-			name = "Buffer Operations",
-			d = { ":Bdelete<CR>", "Delete buffer preserving layout" },
-			D = { ":bdelete<CR>", "Delete buffer" },
-			w = { ":Bwipeout<CR>", "Wipe buffer preserving layout" },
-		},
-		r = {
-			name = "Rest plugin",
-			r = { "<Plug>RestNvim", "Curl line under cursor" },
-			p = { "<Plug>RestNvimPreview", "Preview Curl command" },
-		},
-	},
-}, opts)
-
-local visual_opts = {
-	mode = "v",
-	prefix = "",
-	buffer = nil,
-	silent = true,
-	noremap = true,
-	nowait = false,
-}
-
-wk.register({
-	["<"] = {
-		"<gv",
-		"Reduce identation and remain in visual mode",
-	},
-	[">"] = {
-		">gv",
-		"Increase identation and remain in visual mode",
-	},
-	J = { ":m '>+1<CR>gv=gv", "Move selected lines down" },
-	K = { ":m '<-2<CR>gv=gv", "Move selected lines down" },
-}, visual_opts)
-
-local insert_opts = {
-	mode = "i",
-	prefix = "",
-	buffer = nil,
-	silent = true,
-	noremap = true,
-	nowait = false,
-}
-
-wk.register({
-	["<C-c>"] = {
-		"<Esc>",
-		"When exiting visual block mode with Ctrl-C, changes are normally lost. Using <Esc> keeps the changes.",
-	},
-}, insert_opts)
+	{
+		mode = {"i"},
+		{"<C-c>", "<Esc>", desc="When exiting visual block mode with Ctrl-C, changes are normally lost. Using <Esc> keeps the changes."}
+	}
+})

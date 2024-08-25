@@ -25,39 +25,26 @@ cmp.setup({
 	mapping = cmp_mappings,
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, _)
 	local wk_ok, wk = pcall(require, "which-key")
 	if not wk_ok then
 		return
 	end
 
-	local normal_opts = {
-		mode = "n",
-		prefix = "",
-		buffer = bufnr,
-		silent = true,
-		noremap = true,
-		nowait = false,
-	}
-
-	wk.register({
-		["<localleader>"] = {
-			["c"] = {
-				name = "Code Navigation",
-				a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
-				d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "GoTo Definition" },
-				D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "GoTo Declaration" },
-				f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format buffer" },
-				F = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Floating Diagnostic" },
-				i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "GoTo Implementation" },
-				K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show Documentation" },
-				p = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "GoTo Previous Diagnostic" },
-				r = { "<cmd>lua vim.lsp.buf.references()<CR>", "GoTo References" },
-				s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
-				n = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "GoTo Next Diagnostic" },
-			},
-		},
-	}, normal_opts)
+	wk.add({
+		{"<localleader>c", group="lsp"},
+		{"<localleader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc="Code Actions"},
+		{"<localleader>cd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc="GoTo Definition"},
+		{"<localleader>cD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc="GoTo Declaration"},
+		{"<localleader>cf", "<cmd>lua vim.lsp.buf.format()<cr>", desc="Format buffer"},
+		{"<localleader>cF", "<cmd>lua vim.diagnostic.open_float()<CR>", desc="Floating Diagnostic"},
+		{"<localleader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc="GoTo Implementation"},
+		{"<localleader>cK", "<cmd>lua vim.lsp.buf.hover()<CR>", desc="Show Documentation"},
+		{"<localleader>cp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc="GoTo Previous Diagnostic"},
+		{"<localleader>cr", "<cmd>lua vim.lsp.buf.references()<CR>", desc="GoTo References"},
+		{"<localleader>cs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc="Signature Help"},
+		{"<localleader>cn", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc="GoTo Next Diagnostic"},
+	})
 end)
 
 require("mason").setup({})
