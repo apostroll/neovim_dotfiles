@@ -58,6 +58,11 @@ telescope.setup({
 			},
 		},
 	},
+	pickers = {
+		colorscheme = {
+			enable_preview = true,
+		},
+	},
 	extensions = {
 		terraform_doc = {
 			-- Can't get this to work. Not that I much care
