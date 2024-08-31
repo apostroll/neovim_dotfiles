@@ -49,6 +49,11 @@ wk.add({
 		{"<leader>T", ":tabclose<CR>", desc="Close tab"},
 		{"<leader>,", ":tabnext<CR>", desc="Next tab"},
 		{"<leader>.", ":tabprevious<CR>", desc="Previous tab"},
+		-- Splits
+		{"<C-l>", "<C-w>l", desc="Move to right split"},
+		{"<C-h>", "<C-w>h", desc="Move to left split"},
+		{"<C-j>", "<C-w>j", desc="Move to split below"},
+		{"<C-k>", "<C-w>k", desc="Move to split above"},
 		-- Files
 		{"<localleader><localleader>", "<cmd>Telescope find_files<cr>", desc="find files"},
 		{"<localleader>f", group="files"},
