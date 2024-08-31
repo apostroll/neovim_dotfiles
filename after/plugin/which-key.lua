@@ -93,6 +93,8 @@ wk.add({
 		{"<localleader>tu", ":MundoToggle<CR>", desc="undo visualization"},
 		{"<localleader>tl", ":set list!<CR>", desc="invisible characters"},
 		{"<localleader>ts", ":set spell!<CR>", desc="spellcheck"},
+		{"<localleader>tr", ":set relativenumber!<CR>", desc="relative line numbers"},
+		{"<localleader>tn", ":set number!<CR>", desc="line numbers"},
 	},
 	{
 		mode = {"v"},
