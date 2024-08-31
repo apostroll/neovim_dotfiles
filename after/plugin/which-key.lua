@@ -39,7 +39,7 @@ wk.setup({
 wk.add({
 	{
 		mode = {"n"},
-		{"J", "mJ`z", desc="Join lines keeping cursor in its original position"},
+		{"J", "mzJ`z", desc="Join lines keeping cursor in its original position"},
 		{"n", "nzz", desc="Find next and center on screen"},
 		{"N", "Nzz", desc="Find previous and center on screen"},
 		{"Y", "y$", desc="Yank from cursor to end of line like `D`"},
