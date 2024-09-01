@@ -25,6 +25,26 @@ cmp.setup({
 	mapping = cmp_mappings,
 })
 
+lsp.extend_lspconfig({
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
+
+vim.g.rustaceanvim = {
+	server = {
+		capabilities = lsp.get_capabilities(),
+	},
+	-- server = {
+	-- 	cmd = function()
+	-- 		local mason_registry = require("mason-registry")
+	-- 		local ra_binary = mason_registry.is_installed("rust-analyzer")
+	-- 				-- This may need to be tweaked, depending on the operating system.
+	-- 				and mason_registry.get_package("rust-analyzer"):get_install_path() .. "/rust-analyzer"
+	-- 			or "rust-analyzer"
+	-- 		return { ra_binary } -- You can add args to the list, such as '--log-file'
+	-- 	end,
+	-- },
+}
+
 lsp.on_attach(function(_, _)
 	local wk_ok, wk = pcall(require, "which-key")
 	if not wk_ok then
@@ -32,18 +52,18 @@ lsp.on_attach(function(_, _)
 	end
 
 	wk.add({
-		{"<localleader>c", group="lsp"},
-		{"<localleader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc="Code Actions"},
-		{"<localleader>cd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc="GoTo Definition"},
-		{"<localleader>cD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc="GoTo Declaration"},
-		{"<localleader>cf", "<cmd>lua vim.lsp.buf.format()<cr>", desc="Format buffer"},
-		{"<localleader>cF", "<cmd>lua vim.diagnostic.open_float()<CR>", desc="Floating Diagnostic"},
-		{"<localleader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc="GoTo Implementation"},
-		{"<localleader>cK", "<cmd>lua vim.lsp.buf.hover()<CR>", desc="Show Documentation"},
-		{"<localleader>cp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc="GoTo Previous Diagnostic"},
-		{"<localleader>cr", "<cmd>lua vim.lsp.buf.references()<CR>", desc="GoTo References"},
-		{"<localleader>cs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc="Signature Help"},
-		{"<localleader>cn", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc="GoTo Next Diagnostic"},
+		{ "<localleader>c", group = "lsp" },
+		{ "<localleader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code Actions" },
+		{ "<localleader>cd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "GoTo Definition" },
+		{ "<localleader>cD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc = "GoTo Declaration" },
+		{ "<localleader>cf", "<cmd>lua vim.lsp.buf.format()<cr>", desc = "Format buffer" },
+		{ "<localleader>cF", "<cmd>lua vim.diagnostic.open_float()<CR>", desc = "Floating Diagnostic" },
+		{ "<localleader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "GoTo Implementation" },
+		{ "<localleader>cK", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Show Documentation" },
+		{ "<localleader>cp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "GoTo Previous Diagnostic" },
+		{ "<localleader>cr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "GoTo References" },
+		{ "<localleader>cs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Signature Help" },
+		{ "<localleader>cn", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "GoTo Next Diagnostic" },
 	})
 end)
 
@@ -62,17 +82,18 @@ require("mason-lspconfig").setup({
 		lua_ls = function()
 			require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 		end,
-		rust_analyzer = function()
-			require("lspconfig").rust_analyzer.setup({
-				settings = {
-					["rust-analyzer"] = {
-						checkOnSave = {
-							command = "clippy",
-						},
-					},
-				},
-			})
-		end,
+		rust_analyzer = lsp.noop,
+		-- rust_analyzer = function()
+		-- 	require("lspconfig").rust_analyzer.setup({
+		-- 		settings = {
+		-- 			["rust-analyzer"] = {
+		-- 				checkOnSave = {
+		-- 					command = "clippy",
+		-- 				},
+		-- 			},
+		-- 		},
+		-- 	})
+		-- end,
 	},
 })
 

@@ -145,4 +145,10 @@ lazy.setup({
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
+
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^5", -- Recommended
+		lazy = false, -- This plugin is already lazy
+	},
 })
