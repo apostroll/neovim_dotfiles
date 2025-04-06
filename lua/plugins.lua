@@ -21,7 +21,6 @@ end
 
 lazy.setup({
 	-- colorschemes
-	"tanvirtin/monokai.nvim",
 	"ellisonleao/gruvbox.nvim",
 	-- git undo tree visualization
 	"simnalamburt/vim-mundo",
@@ -29,8 +28,6 @@ lazy.setup({
 	"preservim/tagbar",
 	-- vertically align text
 	"godlygeek/tabular",
-	-- Preserves layout when closing buffers  (see: :Bdelete, :Bwipeout)
-	"moll/vim-bbye",
 	-- vscode-like pictograms for neovim's lsp
 	"onsails/lspkind-nvim",
 	-- language server settings defined in json for
@@ -41,6 +38,7 @@ lazy.setup({
 	"mattn/emmet-vim",
 	-- helpers for puppet
 	"rodjek/vim-puppet",
+	"robbles/logstash.vim",
 	{
 		-- Autopairs, integrates with both cmp and treesitter
 		"windwp/nvim-autopairs",
@@ -79,7 +77,7 @@ lazy.setup({
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v3.x",
+		branch = "v4.x",
 		dependencies = {
 			-- LSP Support
 			-- Configures Language Server Protocol (LSP) servers (Required)
@@ -144,5 +142,10 @@ lazy.setup({
 		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
+	},
+	{
+		-- Highlight and find todo comments
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 })
