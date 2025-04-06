@@ -42,6 +42,15 @@ local options = {
 	list = false,
 	listchars = "tab:>-,eol:$,trail:-,precedes:<,extends:>,nbsp:+",
 	langmap = "ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz",
+	winborder = "rounded", -- Rounded borders on floating windows
+	-- Configures autocompletion popup window.
+	-- menu: display in a menu
+	-- noselect: do not automatically select the first option
+	-- noinsert: do not automatically insert the first option
+	-- preview: display help about the selected option in a preview window
+	-- fuzzy: limit options using fuzzy search
+	completeopt = "menu,noselect,noinsert,preview,fuzzy",
+	grepprg = "rg --vimgrep", -- use ripgrep instead of grep
 }
 
 vim.opt.diffopt:append("algorithm:patience") -- better diffing: https://vimways.org/2018/the-power-of-diff/

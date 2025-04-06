@@ -30,8 +30,6 @@ lazy.setup({
 	"godlygeek/tabular",
 	-- vscode-like pictograms for neovim's lsp
 	"onsails/lspkind-nvim",
-	-- language server settings defined in json for
-	"tamago324/nlsp-settings.nvim",
 	-- marks new/modified/deleted lines in buffer
 	"lewis6991/gitsigns.nvim",
 	-- compose html using css selector syntax
@@ -39,13 +37,6 @@ lazy.setup({
 	-- helpers for puppet
 	"rodjek/vim-puppet",
 	"robbles/logstash.vim",
-	{
-		-- Autopairs, integrates with both cmp and treesitter
-		"windwp/nvim-autopairs",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-	},
 	{
 		-- eyecandy with eyecandy dependencies
 		"akinsho/bufferline.nvim",
@@ -76,32 +67,10 @@ lazy.setup({
 		},
 	},
 	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v4.x",
-		dependencies = {
-			-- LSP Support
-			-- Configures Language Server Protocol (LSP) servers (Required)
-			{ "neovim/nvim-lspconfig" },
-			-- simple to use language server installer (Optional)
-			{ "williamboman/mason.nvim" },
-			-- bridges mason.nvim with the lspconfig plugin (Optional)
-			{ "williamboman/mason-lspconfig.nvim" },
-
-			-- Autocompletion
-			-- The completion plugin (Required)
-			{ "hrsh7th/nvim-cmp" },
-			-- nvim-cmp source for neovim's built-in LSP (Required)
-			{ "hrsh7th/cmp-nvim-lsp" },
-			-- nvim-cmp source for buffer words (Optional)
-			{ "hrsh7th/cmp-buffer" },
-			-- Snippet thingy I'm not really using (Required)
-			{ "L3MON4D3/LuaSnip" },
-		},
-	},
-	{
 		-- Diagnostics
 		"jay-babu/mason-null-ls.nvim",
 		dependencies = {
+			"williamboman/mason.nvim",
 			"nvimtools/none-ls.nvim",
 			--[[ "jose-elias-alvarez/null-ls.nvim" , ]]
 		},

@@ -1,16 +1,22 @@
+require("mason").setup({})
 require("mason-null-ls").setup({
 	ensure_installed = {
 		-- Opt to list sources here, when available in mason.
 		-- Linters
 		"ruff", -- python
-		"sqlfluff", -- SQL
 		"shellcheck", -- shell
 		"tflint", -- terraform
 
 		-- Formatters
 		"jq", -- json
 		"shfmt", -- shell
-		"stylua", -- lua
+	},
+	methods = {
+		diagnostics = true,
+		formatting = true,
+		code_actions = true,
+		completion = true,
+		hover = true,
 	},
 	automatic_installation = false,
 	handlers = {},
@@ -18,5 +24,5 @@ require("mason-null-ls").setup({
 require("null-ls").setup({
 	sources = {
 		-- Anything not supported by mason.
-	}
+	},
 })
